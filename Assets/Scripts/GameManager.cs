@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
 
     internal void GameStart(int level)
     {
-        Debug.Log($"Level : {level}");
+        //Debug.Log($"Level : {level}");
         TitleObjects.gameObject.SetActive(false);
         StopCoroutine(SpawnTargets(1));
         StartCoroutine(SpawnTargets(level));

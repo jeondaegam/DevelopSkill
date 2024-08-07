@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,6 +11,7 @@ public class Target : MonoBehaviour
     // referencing
     public int Point;
     public ParticleSystem ExplosionParticle;
+    public TextMeshPro PopupDamagePrefab;
 
 
     // private
@@ -30,7 +32,7 @@ public class Target : MonoBehaviour
         TargetRB.AddTorque(RandomTorque()
             , RandomTorque()
             , RandomTorque()
-            ,ForceMode.Impulse);
+            , ForceMode.Impulse);
 
         // 위로 상승 : 점프력을 다이나믹하게 주기 위해 랜덤값을 곱해준다 
         TargetRB.AddForce(RandomForce(), ForceMode.Impulse);
@@ -62,6 +64,21 @@ public class Target : MonoBehaviour
         Instantiate(ExplosionParticle, transform.position, transform.rotation);
         GameManager.Instance.UpdateScore(Point);
         Destroy(gameObject);
-        
+
+        // point popup
+        SetPointPopupText();
+    }
+
+    private void SetPointPopupText()
+    {
+        // popup text (Quaternion.identity: 특별한 회전이 필요 없을 때)
+        TextMeshPro popupText = Instantiate(PopupDamagePrefab, transform.position, Quaternion.identity);
+
+        if (gameObject.CompareTag("Bad"))
+        {
+            popupText.color = Color.red;
+        }
+        //point가 0보다 크면 "+" 를 붙인다. 
+        popupText.text = (Point > 0) ? $"+{Point}" : Point.ToString();
     }
 }

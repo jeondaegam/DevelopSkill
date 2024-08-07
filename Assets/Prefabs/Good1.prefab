@@ -148,3 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Point: 5
   ExplosionParticle: {fileID: 15085447402717889, guid: 743ce290c74ae49c19aa3f128322fc7e, type: 3}
+  PopupDamagePrefab: {fileID: 3010334591712702996, guid: 6b2b4e435707e4bcab620cf3f0282510, type: 3}
