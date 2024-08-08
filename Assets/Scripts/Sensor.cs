@@ -15,10 +15,10 @@ public class Sensor : MonoBehaviour
         // Collider와 Collider의 충돌을 감지한다
         // Is Trigger가 체크된 콜라이더가 충돌하면 이를 감지한다
 
-        if(other.CompareTag("Good"))
-        {
-            GameManager.Instance.GameOver();
-        }
+        //if(other.CompareTag("Good"))
+        //{
+        //    GameManager.Instance.GameOver();
+        //}
         Destroy(other.gameObject);
     }
 }

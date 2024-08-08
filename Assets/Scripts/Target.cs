@@ -63,10 +63,19 @@ public class Target : MonoBehaviour
         // particle 
         Instantiate(ExplosionParticle, transform.position, transform.rotation);
         GameManager.Instance.UpdateScore(Point);
+
+        if (gameObject.CompareTag("Bad"))
+        {
+            Debug.Log("어허 !");
+            GameManager.Instance.LoseLife();
+        }
+
+        // popup point text
+        SetPointPopupText();
+        // play sound
+        SoundManager.Instance.PlaySoundPop();
         Destroy(gameObject);
 
-        // point popup
-        SetPointPopupText();
     }
 
     private void SetPointPopupText()
