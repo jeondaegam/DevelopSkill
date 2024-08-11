@@ -11,7 +11,7 @@ public class Target : MonoBehaviour
     // referencing
     public int Point;
     public ParticleSystem ExplosionParticle;
-    public TextMeshPro PopupDamagePrefab;
+    public TextMeshPro PopupTextPrefab;
 
 
     // private
@@ -60,28 +60,36 @@ public class Target : MonoBehaviour
     // 클릭 이벤트
     private void OnMouseDown()
     {
+
+        SoundManager.Instance.PlaySoundPop();
+
+
         // particle 
-        Instantiate(ExplosionParticle, transform.position, transform.rotation);
+        ParticleSystem particle = Instantiate(ExplosionParticle, transform.position, transform.rotation);
+        ParticleSystem.MainModule mainModule = particle.main;
+        Color particleStartColor = mainModule.startColor.color;
+
         GameManager.Instance.UpdateScore(Point);
 
         if (gameObject.CompareTag("Bad"))
         {
-            Debug.Log("어허 !");
             GameManager.Instance.LoseLife();
         }
 
         // popup point text
-        SetPointPopupText();
+        SetPointPopupText(particleStartColor);
+
         // play sound
         SoundManager.Instance.PlaySoundPop();
         Destroy(gameObject);
 
     }
 
-    private void SetPointPopupText()
+    private void SetPointPopupText(Color particleStartColor)
     {
         // popup text (Quaternion.identity: 특별한 회전이 필요 없을 때)
-        TextMeshPro popupText = Instantiate(PopupDamagePrefab, transform.position, Quaternion.identity);
+        TextMeshPro popupText = Instantiate(PopupTextPrefab, transform.position, Quaternion.identity);
+        popupText.color = particleStartColor;
 
         if (gameObject.CompareTag("Bad"))
         {

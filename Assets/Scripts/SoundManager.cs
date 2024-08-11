@@ -13,17 +13,17 @@ public class SoundManager : MonoBehaviour
 
     [Header("#BGM")]
     [SerializeField]
-    private AudioClip[] bgmClips;
+    private AudioClip backgroundMusicClip;
 
     [Header("#SFX")]
     [SerializeField]
     private AudioClip[] sfxClips;
 
-    [Range(0f, 1f)]
+    [SerializeField]
     private float bgmVolume = .5f;
 
-    [Range(0f, 1f)]
-    public float sfxVolume = .7f;
+    [SerializeField]
+    private float sfxVolume = .7f;
 
     private void Awake()
     {
@@ -66,19 +66,22 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySoundBGM()
     {
-        PlaySound(bgmPlayer, bgmClips, "VideoGameBgm");
-    }
-
-
-    public void PlaySoundPop()
-    {
-        PlaySound(sfxPlayer, sfxClips, "BubblePop");
+        //PlaySound(bgmPlayer, bgmClips, "VideoGameBgm");
+        bgmPlayer.clip = backgroundMusicClip;
+        bgmPlayer.Play();
 
     }
+
+
 
     public void PlaySoundGameStart()
     {
         PlaySound(sfxPlayer, sfxClips, "GameStart");
+    }
+
+    public void PlaySoundPop()
+    {
+        PlaySound(sfxPlayer, sfxClips, "BubblePop");
     }
 
 

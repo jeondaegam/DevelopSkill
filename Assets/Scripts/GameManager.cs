@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] Targets;
     public Text ScoreText;
     public Text[] PointTexts;
-    public Text GameOverText;
+    //public Text GameOverText;
 
     public Button RestartButton;
     public Button ExitButton;
@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
 
         GameOverElements.SetActive(false);
 
-        StartSpawn = StartCoroutine(SpawnTargets(1));
+        StartSpawn = StartCoroutine(SpawnTargets(2));
     }
 
     private void Exit()
