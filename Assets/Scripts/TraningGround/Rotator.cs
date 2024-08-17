@@ -15,7 +15,8 @@ public class Rotator : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
+    // 프레임 레이트에 따라 호출 빈도가 달라지므, 물리 연산의 결과가 일관되지 않을 수 있다 .
+    // 물리 엔진과의 동기화가 깨질 수 있다 . 
     void Update()
     {
         if (Input.GetMouseButtonUp(0))
@@ -25,6 +26,8 @@ public class Rotator : MonoBehaviour
 
     }
 
+    // 프레임 레이트와 무관하게 일정한 시간 간격으로 호출된다
+    // 따라서 물리 연산이 일정한 시간 간격으로 처리된다
     private void FixedUpdate()
     {
         if (isDragging)

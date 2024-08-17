@@ -12,8 +12,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private TextCube textBlockPrefab;
-    [SerializeField]
-    private TextMeshPro BlockText;
+    //[SerializeField]
+    //private TextMeshPro BlockText;
 
     // 백스페이스로 지울때도 문자열이 변하니까 마구잡이로 생성되는데
     // 이전문자열 길이랑 비교해서 길이가 더 커졌을 때만 블록 생성되게 해야겟음 
@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
     public void OnValueChanged(string newText)
     {
         message.text = $"Value Changed: {newText}";
-        BlockText.text = getLastStr(newText);
+        //BlockText.text = getLastStr(newText);
 
         TextCube newCube = Instantiate(textBlockPrefab, transform.position, transform.rotation);
         newCube.SetText(getLastStr(newText));
