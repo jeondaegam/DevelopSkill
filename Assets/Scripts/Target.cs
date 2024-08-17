@@ -41,24 +41,32 @@ public class Target : MonoBehaviour
         transform.position = RandomPosition();
     }
 
-    // X, Y 값을 가지는 Vector3 리턴
-    private Vector3 RandomPosition()
+    private void Update()
     {
-        return new Vector3(Random.Range(-XPosRange, XPosRange), YPosition);
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            if(touch.phase == TouchPhase.Began)
+            {
+                // 터치된 위치를 Ray로 변환
+                Ray ray = Camera.main.ScreenPointToRay(touch.position);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    // 터치된 오브젝트가 이 오브젝트니 ?
+                    if (hit.transform == transform)
+                    {
+                        PerformAction();
+                    }
+                }
+            }
+
+        }
     }
 
-    private Vector3 RandomForce()
-    {
-        return Vector3.up * Random.Range(MinSpeed, MaxSpeed);
-    }
-
-    private float RandomTorque()
-    {
-        return Random.Range(-MaxTorque, MaxTorque);
-    }
-
-    // 클릭 이벤트
-    private void OnMouseDown()
+    private void PerformAction()
     {
 
         SoundManager.Instance.PlaySoundPop();
@@ -82,6 +90,29 @@ public class Target : MonoBehaviour
         // play sound
         SoundManager.Instance.PlaySoundPop();
         Destroy(gameObject);
+    }
+
+
+    // X, Y 값을 가지는 Vector3 리턴
+    private Vector3 RandomPosition()
+    {
+        return new Vector3(Random.Range(-XPosRange, XPosRange), YPosition);
+    }
+
+    private Vector3 RandomForce()
+    {
+        return Vector3.up * Random.Range(MinSpeed, MaxSpeed);
+    }
+
+    private float RandomTorque()
+    {
+        return Random.Range(-MaxTorque, MaxTorque);
+    }
+
+    // 클릭 이벤트
+    private void OnMouseDown()
+    {
+        PerformAction();
 
     }
 

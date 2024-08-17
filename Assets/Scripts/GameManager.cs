@@ -63,9 +63,9 @@ public class GameManager : MonoBehaviour
         ExitButton.onClick.AddListener(Exit);
 
         TitleObjects.gameObject.SetActive(true);
-        ResetScore();
 
         GameOverElements.SetActive(false);
+        ResetScore();
 
         StartSpawn = StartCoroutine(SpawnTargets(2));
     }
@@ -148,6 +148,7 @@ public class GameManager : MonoBehaviour
         IsGamePlaying = true;
         selectedLevel = level;
 
+        ActivateHearts();
         ResetScore();
         TitleObjects.gameObject.SetActive(false);
         ScoreText.gameObject.SetActive(true);
@@ -160,7 +161,11 @@ public class GameManager : MonoBehaviour
 
     internal void LoseLife()
     {
-        //UIManager.TakeHealth(); // TODO - UI Manager 만들기 
+        //UIManager.TakeHealth(); // TODO - UI Manager 만들기
+        if (!IsGamePlaying)
+        {
+            return;
+        }
         LivesRemaning--;
         Debug.Log(LivesRemaning);
         Hearts[LivesRemaning].SetActive(false);
