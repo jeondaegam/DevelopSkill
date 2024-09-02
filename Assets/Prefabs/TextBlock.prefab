@@ -146,7 +146,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -171,6 +171,11 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 38f048c96477047baba798f003008975, type: 2}
   - {fileID: 2100000, guid: 38f048c96477047baba798f003008975, type: 2}
   - {fileID: 2100000, guid: a6aeab7223c8c4ee494eab7d9384248c, type: 2}
+  - {fileID: 2100000, guid: b2066519388cd4b00a9e3a99d01ac293, type: 2}
+  - {fileID: 2100000, guid: e8e19e3c3791540b9bbfc88443bd1a05, type: 2}
+  - {fileID: 2100000, guid: fe6afec541d4e4d729184cd3079ee1a4, type: 2}
+  - {fileID: 2100000, guid: 3ff6032b21a574acbbe28848a2808be9, type: 2}
+  - {fileID: 2100000, guid: b3c959d2412f244d29e39eee2d181fea, type: 2}
   XPosRange: 1.5
 --- !u!1 &481816429842561235
 GameObject:
